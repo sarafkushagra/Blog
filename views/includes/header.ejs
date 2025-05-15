@@ -1,0 +1,21 @@
+<nav class="header_container">
+    <div class="logo">
+        <a href="/blog" style="text-decoration: none;">BlogCheck</a>
+    </div>
+    <div class="nav_links">
+        <a href="/home">Home</a>
+        <a href="/archive">Archive</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+        <a href="/blog/add">Add Blog</a>
+    </div>
+    <div class="auth_links">
+        <% if(!currentUser) { %>
+        <a href="/signup">Sign Up</a>
+        <a href="/login">Login</a>
+        <% } %>
+        <% if(currentUser){  %>
+            <a href="/logout">Logout</a>
+        <% } %>
+        </div>
+</nav>

@@ -1,0 +1,96 @@
+
+.header_container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px;
+    padding: 30px 20px;
+    background-color:bisque;
+    height: 30px;
+    /* color: #fff; */
+}
+.nav_links{
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    align-items: center;
+}
+.auth_links{
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: center;
+}
+
+
+
+.box{
+    padding: 20px;
+    display: flex;
+    gap:15px;
+    flex-wrap: wrap;
+}
+
+.blog{
+    background-color: aquamarine;
+    padding: 20px;
+    /* height: auto; */
+    width: 32%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;height: 300px; /* Adjust the height as needed */
+}
+.operation{
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+}
+.heading{
+    font-size: 50px;
+    font-style: italic;
+    overflow: hidden;
+    text-align: center;
+    margin: 20px;
+};
+
+#mainbox{
+    background-color: aquamarine;
+    margin: 20px;
+}
+#blogtitle{
+    font-size: 30px;
+    font-weight: bold;
+    margin: 10px;
+    background-color: beige;
+    text-align: center;
+    height: 80px;
+    align-content: center;
+    padding: 20px;
+}
+#blogdescription{
+    font-size: 20px;
+    margin: 3px;
+    align-content: center;
+    padding: 10px;
+    font-weight: bold 100;
+}
+#blogcontent{
+    font-size: 20px;
+    align-content: center;
+    padding: 10px;
+    font-weight: italic 200;
+}
+.operationshow{
+    display: flex;
+    gap: 10px;
+    /* justify-content: space-between; */
+    align-items: center;
+    margin-top: auto;
+    padding: 20px;
+}

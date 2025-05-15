@@ -1,0 +1,27 @@
+<%- layout("/layouts/sample") %>
+<body>
+    <!-- <h1>Welcome User</h1> -->
+    <div>
+        <h1 class="heading">All Blogs</h1>
+        <div class="box">
+            <% for (let blog of allBlogs) { %>
+                <div class="blog">
+                    <h3 style="height: 48px;"><%= blog.title %></h3> <hr>
+                    <h6><%= blog.description %></h6>
+                    <p><%= blog.content %></p>
+                    <div class="operation">
+                        <span>
+                            <a href="/blog/<%= blog._id %>">View</a> &nbsp
+                        <a href="/blog/<%= blog._id %>/edit">Edit</a>
+                        </span>
+                        <span>
+                            <form  method="POST" action="/blog/<%=blog._id%>?_method=DELETE">
+                                <button>Delete</button>
+                            </form>
+                        </span>
+                    </div>
+                </div>
+            <% } %>
+    </div>
+    </div>
+</body>

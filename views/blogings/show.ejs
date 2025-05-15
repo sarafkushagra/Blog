@@ -1,0 +1,34 @@
+<%- layout("/layouts/sample") %>
+<body>
+    <div class="heading">Blog in Detail..</div>
+    <div id="mainbox">
+        <div>
+            <h1 id="blogtitle">
+                <%= blog.title %>
+            </h1>           
+            <h3 id="blogdescription">
+                Description : <%= blog.description %>
+            </h3>
+            <h5 id="blogauthor"> 
+                Owned by: <%= blog.owner.username %>
+            </h5>
+            <h6 id="blogcontent">
+                Content: <br>
+                <%= blog.content %>
+            </h6>
+        </div>
+        <% if(currentUser && currentUser._id.equals(blog.owner._id)){ %>
+        <div class="operationshow">
+            <span>
+                <a href="/blog/<%= blog._id %>/edit">Edit</a>
+            </span>
+            <span>
+                <form method="POST" action="/blog/<%=blog._id%>?_method=DELETE">
+                    <button>Delete</button>
+                </form>
+            </span>
+        </div>
+        <% } %>
+
+    </div>
+</body>
