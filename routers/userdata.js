@@ -8,11 +8,11 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
 
 router.get('/signup', (req, res) => {
-  res.render('pages/signup.ejs');
+  res.render('design/signup.ejs');
 });
 
 router.get('/login', (req, res) => {
-  res.render('pages/login.ejs');
+  res.render('design/login.ejs');
 });
 
 router.post('/signup', async (req, res) => {

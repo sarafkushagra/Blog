@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - Blogify</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    
+        rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="w-full max-w-md p-8 bg-white rounded-lg shadow-lg">
+        <h2 class="text-2xl font-bold text-indigo-800  mb-8 text-center">Login to Blogify</h2>
+
+        <form class="space-y-5" action="/login" method="POST" class="needs-validation" novalidate>
+            <div class="mb-3">
+                <label for="username" class="form-label text-xl font-bold">Username</label>
+                <input type="username" name="username" id="username" placeholder="Enter your username"
+                    class="w-full mt-2 p-2 border form-control rounded focus:outline-none focus:ring-2 focus:ring-[#3d348b] focus:border-transparent"
+                    required />
+            </div>
+
+            <div class="mb-3">
+                <label for="password" class="form-label text-xl font-bold  ">Password</label>
+                <input type="password" id="password" name="password" placeholder="Password"
+                    class="w-full mt-2 p-2 border form-control rounded focus:outline-none focus:ring-2 focus:ring-[#3d348b] focus:border-transparent"
+                    required />
+            </div>
+
+            <div class="flex justify-center gap-4 mt-4 mb-3">
+                <a href="/auth/google"
+                    class="bg-white rounded-full shadow p-3 flex items-center justify-center hover:shadow-md transition-shadow text-decoration-none">
+                    <span class="mr-2">Login with Google</span>
+                    <img src="https://www.google.com/favicon.ico" alt="Google" class="w-6 h-6">
+                </a>
+            </div>
+
+            <button type="submit"
+                class="bg-indigo-800 text-white w-full py-2 rounded hover:bg-[#00509d] transition-colors">
+                Login
+            </button>
+        </form>
+        <div class="mt-6 text-center">
+            <p class="text-sm text-gray-600">
+                Don't have an account?
+                <a href="/signup" class="text-[#3d348b] hover:underline">Sign up</a>
+            </p>
+        </div>
+    </div>
+</body>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+
+
+</html>

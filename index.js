@@ -15,12 +15,15 @@ const LocalStrategy = require('passport-local');
 const User = require('./models/user.js');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
-app.set('views', path.join(__dirname, 'views'));
+// EJS configuration
+app.engine('ejs', ejsMate);
 app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
+// Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride("_method"));
-app.engine("ejs", ejsMate);
 
 const port = 3000;
 
@@ -38,18 +41,14 @@ async function main() {
   await mongoose.connect(MONGO_URL);
 }
 
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
-});
-
-app.get('/', (req, res) => {
-  res.redirect('/blog');
-});
-
 const sessionOptions = {
-  secret: "mysupersecret",
+  secret: process.env.SESSION_SECRET || "mysupersecret",
   resave: false,
   saveUninitialized: true,
+  store: Mongostore.create({
+    mongoUrl: MONGO_URL,
+    touchAfter: 24 * 60 * 60 // time period in seconds
+  }),
   cookie: {
     httpOnly: true,
     expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
@@ -65,8 +64,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
 
- 
-//Middleware to set flash messages
+//Middleware to set flash messages and user
 app.use((req, res, next) => {
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
@@ -74,9 +72,16 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use((req,res,next,err)=>{
-  res.send("Something went wrong");
-})
+// Routes
+app.get('/', (req, res) => {
+  res.redirect('/home');
+});
+
+app.get('/home', (req, res) => {
+  res.render('pages/home');
+});
+
+
 
 const blogs = require('./routers/blog');
 app.use("/", blogs);
@@ -84,6 +89,7 @@ app.use("/", blogs);
 const userData = require('./routers/userdata');
 app.use("/", userData);
 
+// Google OAuth Strategy
 passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
@@ -100,13 +106,12 @@ passport.use(new GoogleStrategy({
       type: "google"
     });
 
-    await newUser.save(); // <-- No need for User.register
+    await newUser.save();
     done(null, newUser);
   } catch (err) {
     done(err, null);
   }
 }));
-
 
 passport.serializeUser(function(user, done) {
   done(null, user.id);
@@ -121,3 +126,6 @@ passport.deserializeUser(async function(id, done) {
   }
 });
 
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
+});
