@@ -14,7 +14,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('./models/user.js');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
-
+const {isLoggedIn} = require('./middleware');
 // EJS configuration
 app.engine('ejs', ejsMate);
 app.set('view engine', 'ejs');
@@ -93,6 +93,11 @@ app.get('/', (req, res) => {
 app.get('/home', (req, res) => {
   res.render('pages/home');
 });
+
+app.get('/archive', isLoggedIn, (req, res) => {
+  res.send('hello archive');
+}
+);
 
 const blogs = require('./routers/blog');
 app.use("/", blogs);

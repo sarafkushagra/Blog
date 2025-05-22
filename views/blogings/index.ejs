@@ -1,27 +1,51 @@
 <%- layout("/layouts/sample") %>
-<body>
-    <!-- <h1>Welcome User</h1> -->
-    <div>
-        <h1 class="heading">All Blogs</h1>
-        <div class="box">
+<body class="bg-gray-50">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-4xl font-bold text-purple-600 mb-8 text-center">All Blogs</h1>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <% for (let blog of allBlogs) { %>
-                <div class="blog">
-                    <h3 style="height: 48px;"><%= blog.title %></h3> <hr>
-                    <h6><%= blog.description %></h6>
-                    <p><%= blog.content %></p>
-                    <div class="operation">
-                        <span>
-                            <a href="/blog/<%= blog._id %>">View</a> &nbsp
-                        <a href="/blog/<%= blog._id %>/edit">Edit</a>
-                        </span>
-                        <span>
-                            <form  method="POST" action="/blog/<%=blog._id%>?_method=DELETE">
-                                <button>Delete</button>
-                            </form>
-                        </span>
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col h-full">
+                    <div class="p-6 flex-grow">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3 line-clamp-2"><%= blog.title %></h3>
+                        <hr class="border-gray-200 mb-4">
+                        <div class="space-y-3">
+                            <div>
+                                <h4 class="text-sm font-medium text-purple-600 mb-1">Description</h4>
+                                <p class="text-gray-600 line-clamp-2"><%= blog.description %></p>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-medium text-purple-600 mb-1">Content</h4>
+                                <p class="text-gray-500 line-clamp-3"><%= blog.content %></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-center space-x-3 p-4 mt-auto border-t border-gray-100 bg-gray-50">
+                        <a href="/blog/<%= blog._id %>" 
+                           class="flex items-center bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700 transition duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                            </svg>
+                            View
+                        </a>
+                        <a href="/blog/<%= blog._id %>/edit" 
+                           class="flex items-center bg-purple-100 text-purple-600 px-4 py-2 rounded-md hover:bg-purple-200 transition duration-300">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                            </svg>
+                            Edit
+                        </a>
+                        <form method="POST" action="/blog/<%=blog._id%>?_method=DELETE" class="inline">
+                            <button class="flex items-center bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                </svg>
+                                Delete
+                            </button>
+                        </form>
                     </div>
                 </div>
             <% } %>
-    </div>
+        </div>
     </div>
 </body>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign In - Blogify</title>
+    <title>Login - BlogCheck</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
     
@@ -17,42 +17,46 @@
     </style>
 </head>
 
-<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+<body class="bg-gray-50 min-h-screen flex items-center justify-center">
     <div class="w-full max-w-md p-8 bg-white rounded-lg shadow-lg">
-        <h2 class="text-2xl font-bold text-indigo-800  mb-8 text-center">Login to Blogify</h2>
+        <div class="text-center mb-8">
+            <h2 class="text-3xl font-bold text-purple-600">Welcome Back</h2>
+            <p class="text-gray-600 mt-2">Sign in to your account</p>
+        </div>
 
-        <form class="space-y-5" action="/login" method="POST" class="needs-validation" novalidate>
-            <div class="mb-3">
-                <label for="username" class="form-label text-xl font-bold">Username</label>
+        <form class="space-y-6" action="/login" method="POST">
+            <div>
+                <label for="username" class="block text-sm font-medium text-gray-700 mb-1">Username</label>
                 <input type="username" name="username" id="username" placeholder="Enter your username"
-                    class="w-full mt-2 p-2 border form-control rounded focus:outline-none focus:ring-2 focus:ring-[#3d348b] focus:border-transparent"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition duration-200"
                     required />
             </div>
 
-            <div class="mb-3">
-                <label for="password" class="form-label text-xl font-bold  ">Password</label>
-                <input type="password" id="password" name="password" placeholder="Password"
-                    class="w-full mt-2 p-2 border form-control rounded focus:outline-none focus:ring-2 focus:ring-[#3d348b] focus:border-transparent"
+            <div>
+                <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition duration-200"
                     required />
             </div>
 
-            <div class="flex justify-center gap-4 mt-4 mb-3">
+            <div class="flex items-center justify-center">
                 <a href="/auth/google"
-                    class="bg-white rounded-full shadow p-3 flex items-center justify-center hover:shadow-md transition-shadow text-decoration-none">
-                    <span class="mr-2">Login with Google</span>
-                    <img src="https://www.google.com/favicon.ico" alt="Google" class="w-6 h-6">
+                    class="w-full flex items-center justify-center gap-2 bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-50 transition duration-200">
+                    <img src="https://www.google.com/favicon.ico" alt="Google" class="w-5 h-5">
+                    <span>Continue with Google</span>
                 </a>
             </div>
 
             <button type="submit"
-                class="bg-indigo-800 text-white w-full py-2 rounded hover:bg-[#00509d] transition-colors">
-                Login
+                class="w-full bg-purple-600 text-white py-2 px-4 rounded-md hover:bg-purple-700 transition duration-200 font-medium">
+                Sign In
             </button>
         </form>
+
         <div class="mt-6 text-center">
             <p class="text-sm text-gray-600">
                 Don't have an account?
-                <a href="/signup" class="text-[#3d348b] hover:underline">Sign up</a>
+                <a href="/signup" class="text-purple-600 hover:text-purple-700 font-medium">Sign up</a>
             </p>
         </div>
     </div>

@@ -4,12 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up - Blogify</title>
+    <title>Sign Up - BlogCheck</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -17,62 +15,66 @@
     </style>
 </head>
 
-<body class="bg-gray-100 min-h-screen flex items-center justify-center">
-    <div class="w-full max-w-md pt-3 pr-8 pl-8 bg-white rounded-lg shadow-lg ">
-        <h2 class="text-2xl font-bold text-indigo-800 mb-4 text-center"><em>Create Account</em></h2>
-        <form action="/signup" method="POST" class="space-y-5 needs-validation" novalidate>
-            <div class="mb-2">
-                <label for="username" class="form-label text-xl font-bold ">Username</label>
-                <input type="text" name="username" placeholder="Enter Username" id="username"
-                    class="mt-1 w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-[#3d348b] focus:border-transparent form-control"
+<body class="bg-gray-50 min-h-screen flex items-center justify-center">
+    <div class="w-full max-w-md p-8 bg-white rounded-lg shadow-lg">
+        <div class="text-center mb-8">
+            <h2 class="text-3xl font-bold text-purple-600">Create Account</h2>
+            <p class="text-gray-600 mt-2">Join our community of writers and readers</p>
+        </div>
+
+        <form action="/signup" method="POST" class="space-y-6">
+            <div>
+                <label for="username" class="block text-sm font-medium text-gray-700 mb-1">Username</label>
+                <input type="text" name="username" placeholder="Choose a username" id="username"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition duration-200"
                     required />
             </div>
-            <div class="mb-2">
-                <label for="type" class="form-label text-xl font-bold  ">Type</label>
-                <br>
+
+            <div>
+                <label for="type" class="block text-sm font-medium text-gray-700 mb-1">Account Type</label>
                 <select name="type" id="type"
-                    class="mt-1 form-select w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-[#3d348b] focus:border-transparent form-control "
-                    aria-label="Default select example">
-                    <option selected>Select from here</option>
+                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition duration-200">
+                    <option value="" disabled selected>Select your role</option>
                     <option value="1">Writer</option>
                     <option value="2">Reader</option>
                 </select>
             </div>
-            <div class="mb-2">
-                <label for="email" class="form-label text-xl font-bold  ">Email</label>
-                <input type="email" id="email" name="email" placeholder="Enter Email"
-                    class="mt-1 w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-[#3d348b] focus:border-transparent form-control"
+
+            <div>
+                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition duration-200"
                     required />
             </div>
-            <div class="mb-2">
-                <label for="password" class="form-label text-xl font-bold  ">Password</label>
-                <input type="password" id="password" name="password" placeholder="Password"
-                    class="mt-1 w-full p-2 border rounded form-control focus:outline-none focus:ring-2 focus:ring-[#3d348b] focus:border-transparent"
+
+            <div>
+                <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                <input type="password" id="password" name="password" placeholder="Create a password"
+                    class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition duration-200"
                     required />
             </div>
-            <div class="flex justify-center gap-4 ">
+
+            <div class="flex items-center justify-center">
                 <a href="/auth/google"
-                    class="bg-white rounded-full shadow p-2  flex items-center justify-center hover:shadow-md transition-shadow text-decoration-none">
-                    <span class="mr-2">Signup with Google</span>
-                    <img src="https://www.google.com/favicon.ico" alt="Google" class="w-4 h-4">
+                    class="w-full flex items-center justify-center gap-2 bg-white border border-gray-300 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-50 transition duration-200">
+                    <img src="https://www.google.com/favicon.ico" alt="Google" class="w-5 h-5">
+                    <span>Continue with Google</span>
                 </a>
             </div>
+
             <button type="submit"
-                class="bg-indigo-800 text-white w-full py-2 rounded hover:bg-[#00509d] transition-colors">
-                SIGN UP
+                class="w-full bg-purple-600 text-white py-2 px-4 rounded-md hover:bg-purple-700 transition duration-200 font-medium">
+                Create Account
             </button>
         </form>
 
-        <div class="mt-2 text-center">
+        <div class="mt-6 text-center">
             <p class="text-sm text-gray-600">
                 Already have an account?
-                <a href="/login" class="text-[#3d348b] hover:underline">login</a>
+                <a href="/login" class="text-purple-600 hover:text-purple-700 font-medium">Sign in</a>
             </p>
         </div>
     </div>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
-    crossorigin="anonymous"></script>
 
 </html>
