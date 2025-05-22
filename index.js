@@ -20,10 +20,14 @@ app.engine('ejs', ejsMate);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-// Middleware
+// Middleware - Order is important!
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "public")));
 app.use(methodOverride("_method"));
+
+// Serve static files first
+app.use('/public', express.static(path.join(__dirname, 'public')));
+app.use('/css', express.static(path.join(__dirname, 'public/css')));
+app.use('/js', express.static(path.join(__dirname, 'public/js')));
 
 const port = 3000;
 
@@ -72,6 +76,15 @@ app.use((req, res, next) => {
   next();
 });
 
+// Error handling middleware for invalid ObjectIds
+app.use((err, req, res, next) => {
+    if (err.name === 'CastError' && err.kind === 'ObjectId') {
+        req.flash('error', 'Invalid blog ID');
+        return res.redirect('/blog');
+    }
+    next(err);
+});
+
 // Routes
 app.get('/', (req, res) => {
   res.redirect('/home');
@@ -80,8 +93,6 @@ app.get('/', (req, res) => {
 app.get('/home', (req, res) => {
   res.render('pages/home');
 });
-
-
 
 const blogs = require('./routers/blog');
 app.use("/", blogs);

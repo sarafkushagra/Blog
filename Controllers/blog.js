@@ -1,14 +1,19 @@
 const Blog = require('../models/blogs');
 const {isLoggedIn} = require('../middleware');
 // Create a new blog
-module.exports.newBlog = async (req, res) => {
-    const newblog = new Blog(req.body.blog);
-    newblog.owner = req.user._id;
-    console.log(req.user._id);
-    console.log(newblog);
-    await newblog.save();
-    res.redirect('/blog');
-}
+module.exports.newBlog = [isLoggedIn, async (req, res) => {
+    try {
+        const newblog = new Blog(req.body.blog);
+        newblog.owner = req.user._id;
+        await newblog.save();
+        req.flash('success', 'Successfully created a new blog!');
+        res.redirect('/blog');
+    } catch (error) {
+        console.error('Error creating blog:', error);
+        req.flash('error', 'Failed to create blog. Please try again.');
+        res.redirect('/blog/add');
+    }
+}];
 // Add a new blog
 module.exports.addBlog = [isLoggedIn, (req, res) => {
     req.flash("success", "Successfully made a new listing");
@@ -20,15 +25,18 @@ module.exports.showAllBlog = async (req, res) => {
     res.render('blogings/index.ejs', { allBlogs });
 }
 // Show one blog
-module.exports.showOneBlog = async (req, res) => {
-    const { id } = req.params;
-    const blog = await Blog.findById(id).populate('owner');
-    if (!blog) {
-        req.flash("error", "Blog NOT FOUND");
-        res.redirect("/blog");
+module.exports.showOneBlog = async (req, res, next) => {
+    try {
+        const { id } = req.params;
+        const blog = await Blog.findById(id).populate('owner');
+        if (!blog) {
+            req.flash("error", "Blog not found");
+            return res.redirect("/blog");
+        }
+        res.render('blogings/show.ejs', { blog });
+    } catch (err) {
+        next(err);
     }
-    console.log(blog);
-    res.render('blogings/show.ejs', { blog });
 }
 // Edit a blog
 module.exports.editBlog = [isLoggedIn, async (req, res) => {
